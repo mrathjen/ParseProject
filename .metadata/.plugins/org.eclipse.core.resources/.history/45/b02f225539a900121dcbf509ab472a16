@@ -60,14 +60,11 @@ public class ParseStarterProjectActivity extends Activity {
 		ParseObject testObject = new ParseObject("Order");
 		testObject.put("item", message);
 		testObject.put("uname", user);
-		
-		taskText.setText("");
-		
 		testObject.saveInBackground( new SaveCallback() {
 
 			@Override
 			public void done(ParseException e) {
-				if (e == null) {
+				if (e != null) {
 					// save was successful so send push
 					share(message);
 				} else {
@@ -101,6 +98,10 @@ public class ParseStarterProjectActivity extends Activity {
 	public void share(String msg){
 		
 		try{
+			// Can't do this anymore b/c text might change by time of save success
+			//EditText taskText = (EditText) findViewById(R.id.newTaskText);
+			//String message = taskText.getText().toString();
+			
 			String user = "customer";//ParseUser.getCurrentUser().getUsername();
 
 			JSONObject data = new JSONObject();

@@ -53,26 +53,22 @@ public class ParseStarterProjectActivity extends Activity {
 	/** Called when the user clicks the add task button */
 	public void addTask(View view) {
 		EditText taskText = (EditText) findViewById(R.id.newTaskText);
-		final String message = taskText.getText().toString();
+		String message = taskText.getText().toString();
 		
-		String user = "customer";//ParseUser.getCurrentUser().getUsername();
+		String user = "Jordan";//ParseUser.getCurrentUser().getUsername();
 		
 		ParseObject testObject = new ParseObject("Order");
 		testObject.put("item", message);
 		testObject.put("uname", user);
-		
-		taskText.setText("");
-		
 		testObject.saveInBackground( new SaveCallback() {
 
 			@Override
 			public void done(ParseException e) {
-				if (e == null) {
+				if (e != null) {
 					// save was successful so send push
-					share(message);
+					
 				} else {
 					// Error occured
-					Log.d("score", "Error: " + e.getMessage());
 				}
 			}
 		});
@@ -101,7 +97,11 @@ public class ParseStarterProjectActivity extends Activity {
 	public void share(String msg){
 		
 		try{
-			String user = "customer";//ParseUser.getCurrentUser().getUsername();
+			// Can't do this anymore b/c text might change by time of save success
+			//EditText taskText = (EditText) findViewById(R.id.newTaskText);
+			//String message = taskText.getText().toString();
+			
+			String user = "Jordan";//ParseUser.getCurrentUser().getUsername();
 
 			JSONObject data = new JSONObject();
 	        data.put("action", "com.parse.starter.UPDATE_STATUS");
