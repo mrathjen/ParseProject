@@ -1,7 +1,5 @@
 package com.parse.starter;
 
-import java.util.Iterator;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,10 +23,8 @@ private static final String TAG = "MyCustomReceiver";
       JSONObject json = new JSONObject(intent.getExtras().getString("com.parse.Data"));
  
       Log.d(TAG, "got action " + action + " on channel " + channel + " with:");
-      Iterator itr = json.keys();
-      String s = "";
-      if(json.has("message") && json.has("author")){
-    	  this.tv.append(json.getString("author") + " - " + json.getString("message"));
+      if(json.has("item") && json.has("uname")){
+    	  this.tv.append(json.getString("uname") + " - " + json.getString("item") + "\n");
       }
       else{
     	  Log.d(TAG, "Push notifcation not for task list");

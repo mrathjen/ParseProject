@@ -32,24 +32,9 @@
         android:id="@+id/addTaskButton"
         android:layout_width="120dp"
         android:layout_height="32dp"
-        android:text="Add Task"
+        android:text="Place Order"
         android:onClick="addTask" />
 
-    <Button
-        android:id="@+id/getTasksButton"
-        android:layout_width="114dp"
-        android:layout_height="29dp"
-        android:layout_weight="0.02"
-        android:text="Get Tasks" 
-        android:onClick="getTasks" />
-    
-    <Button
-        android:id="@+id/Share"
-        android:layout_width="114dp"
-        android:layout_height="29dp"
-        android:layout_weight="0.02"
-        android:text="Share" 
-        android:onClick="share" />
     
 
 </LinearLayout>

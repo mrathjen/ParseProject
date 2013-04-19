@@ -45,6 +45,7 @@ public class ParseStarterProjectActivity extends Activity {
 		IntentFilter iff = new IntentFilter("com.parse.starter.UPDATE_STATUS");
 		PushService.subscribe(this, "push", ParseStarterProjectActivity.class);
 		this.registerReceiver(rec, iff);
+		this.getOrders(null);
 		ParseInstallation.getCurrentInstallation().saveInBackground();
 	}
 	
@@ -55,23 +56,23 @@ public class ParseStarterProjectActivity extends Activity {
 		
 		String user = "Jordan";//ParseUser.getCurrentUser().getUsername();
 		
-		ParseObject testObject = new ParseObject("Task");
-		testObject.put("message", message);
-		testObject.put("author", user);
+		ParseObject testObject = new ParseObject("Order");
+		testObject.put("item", message);
+		testObject.put("uname", user);
 		testObject.saveInBackground();
 	}
 	
 	/** Called when the user clicks the add task button */
-	public void getTasks(View view) {
+	public void getOrders(View view) {
 		final TextView list = (TextView) findViewById(R.id.taskList);
 		
-		ParseQuery query = new ParseQuery("Task");
+		ParseQuery query = new ParseQuery("Order");
 		query.findInBackground(new FindCallback() {
 		    public void done(List<ParseObject> taskList, ParseException e) {
 		        if (e == null) {
 		        	String newList = "";
 		        	for (int i = 0; i < taskList.size(); i++) {
-		        		newList += taskList.get(i).getString("author") + " - " + taskList.get(i).getString("message") + "\n";
+		        		newList += taskList.get(i).getString("uname") + " - " + taskList.get(i).getString("item") + "\n";
 		        	}
 		        	if (!newList.equals("")) list.setText(newList);
 		        } else {
@@ -91,8 +92,8 @@ public class ParseStarterProjectActivity extends Activity {
 
 			JSONObject data = new JSONObject();
 	        data.put("action", "com.parse.starter.UPDATE_STATUS");
-	        data.put("author", user);
-	        data.put("message", message);
+	        data.put("uname", user);
+	        data.put("item", message);
 	
 			Log.d(TAG, data.toString());
 			ParsePush push = new ParsePush();

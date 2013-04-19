@@ -2,5 +2,5 @@
 <resources>
     <string name="hello">Hello World, ParseStarterProjectActivity!</string>
     <string name="app_name">ParseStarterProject</string>
-    <string name="TaskTitle">List of Your Current Tasks</string>
+    <string name="TaskTitle">Order Items</string>
 </resources>
